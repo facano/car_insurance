@@ -10,7 +10,7 @@ const PriceRule = priceRuleModule.PriceRule;
 describe("CarInsurance", function() {
 
   it("should create CarInsurance instance", function() {
-    const product = new Product("foo", 0, 0);
+    const product = new Product("foo", 1, 1);
     const carInsurance = new CarInsurance([product]);
 
     expect(carInsurance.products[0].name).to.equal(product.name);

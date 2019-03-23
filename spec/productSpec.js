@@ -7,8 +7,8 @@ describe("Product", function() {
 
   it("should create Product instance", function() {
     let pName = "name",
-        pSellIn = 0,
-        pPrice = 0;
+        pSellIn = 1,
+        pPrice = 1;
     const product = new Product(pName, pSellIn, pPrice);
 
     expect(product.name).to.equal(pName);
