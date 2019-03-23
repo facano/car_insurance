@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha spec/*.js",
-    "after-30-days": "node lib/logger.js"
+    "after-30-days": "node lib/logger.js > products_after_30_days.txt && cat products_after_30_days.txt"
   },
   "author": "",
   "license": "ISC",

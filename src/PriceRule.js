@@ -3,7 +3,7 @@ class PriceRule {
     if (product.name == 'Mega Coverage')
       return 80;
     let price = product.price + this.getDiff(product);
-      price = this.checkEdgeCase(price);
+    price = this.checkEdgeCase(price);
 
     return price;
   }
