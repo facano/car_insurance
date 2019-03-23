@@ -1,5 +1,7 @@
 # From: https://github.com/github/gitignore
 
+products_after_30_days.txt
+
 # Logs
 logs
 *.log

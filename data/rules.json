@@ -1,0 +1,68 @@
+[
+  {
+    "name": "default",
+    "rules": [
+      {
+        "from": 1,
+        "value": -1
+      },
+      {
+        "to": 0,
+        "value": -2
+      }
+    ]
+  },
+  {
+    "name": "Super Sale",
+    "rules": [
+      {
+        "from": 1,
+        "value": -2
+      },
+      {
+        "to": 0,
+        "value": -4
+      }
+    ]
+  },
+  {
+    "name": "Full Coverage",
+    "rules": [
+      {
+        "value": 1
+      }
+    ]
+  },
+  {
+    "name": "Mega Coverage",
+    "rules": [
+      {
+        "value": 0
+      }
+    ]
+  },
+  {
+    "name": "Special Full Coverage",
+    "rules": [
+      {
+        "from": 6,
+        "to": 10,
+        "value": 2
+      },
+      {
+        "from": 1,
+        "to": 5,
+        "value": 3
+      },
+      {
+        "from": 0,
+        "to": 0,
+        "value": "-price"
+      },
+      {
+        "from": 11,
+        "value": 1
+      }
+    ]
+  }
+]
