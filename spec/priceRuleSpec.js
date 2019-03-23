@@ -31,6 +31,19 @@ describe("PriceRule", function() {
     expect(price).to.equal(product.price - 2);
   });
 
+  it("should decrement price default units, if rule not found for sellIn > 1 in normal products", function(){
+    const product = new Product("dummy", 10, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price - 1);
+  });
+
+  it("should decrement price default units, if rule not found for sellIn < 1 in normal products", function(){
+    const product = new Product("dummy", 0, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price - 2);
+  });
 
   it("should get price with min value 0, for normal products", function(){
     const product = new Product("foo", 10, 0);
