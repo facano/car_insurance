@@ -17,4 +17,19 @@ describe("PriceRule", function() {
     expect(price).to.be.a('number');
   });
 
+  it("should decrement price in one unit, for normal products", function(){
+    const product = new Product("foo", 10, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(9);
+  });
+
+  it("should stop decrement price in one unit when reach 0, for normal products", function(){
+    const product = new Product("foo", 10, 0);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(0);
+  });
+
+
 });
