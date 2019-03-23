@@ -12,8 +12,8 @@ describe("Product", function() {
     const product = new Product(pName, pSellIn, pPrice);
 
     expect(product.name).equal(pName);
-    expect(product.pSellIn).equal(pSellIn);
-    expect(product.pPrice).equal(pPrice);
+    expect(product.sellIn).equal(pSellIn);
+    expect(product.price).equal(pPrice);
   });
 
 });

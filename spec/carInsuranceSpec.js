@@ -11,9 +11,9 @@ describe("CarInsurance", function() {
     const product = new Product("name", 0, 0);
     const carInsurance = new CarInsurance([product]);
 
-    expect(carInsurance.products[0].name).equal(product.pName);
-    expect(carInsurance.products[0].pSellIn).equal(product.pSellIn);
-    expect(carInsurance.products[0].pPrice).equal(product.pPrice);
+    expect(carInsurance.products[0].name).equal(product.name);
+    expect(carInsurance.products[0].sellIn).equal(product.sellIn);
+    expect(carInsurance.products[0].price).equal(product.price);
   });
 
 });
