@@ -4,6 +4,7 @@ const productModule = require('../src/Product');
 const priceRuleModule = require('../src/PriceRule');
 const Product = productModule.Product;
 const PriceRule = priceRuleModule.PriceRule;
+PriceRule.loadRules('spec/data/rules.json');
 
 describe("PriceRule", function() {
 

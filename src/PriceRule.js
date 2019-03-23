@@ -64,9 +64,10 @@ class PriceRule {
   //                 for  decrement the value of all price
   //    ]
   // }
-  static loadRules(){
+  static loadRules(filename){
+    filename = filename || 'data/rules.json'
     var fs = require('fs');
-    var rulesJson = JSON.parse(fs.readFileSync('data/rules.json', 'utf8'));
+    var rulesJson = JSON.parse(fs.readFileSync(filename, 'utf8'));
     let rules = new Map();
     rulesJson.forEach( function(rule, index) {
       rules.set(rule.name, rule.rules)
