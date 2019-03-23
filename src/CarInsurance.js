@@ -8,8 +8,12 @@ class CarInsurance {
 
   updatePrice(){
     this.products.forEach( function(product, index) {
+      if (product.name != 'Mega Coverage')
+        product.sellIn -= 1;
+
       product.price = PriceRule.getPrice(product);
     });
+    return this.products;
   }
 }
 

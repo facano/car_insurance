@@ -22,10 +22,27 @@ describe("CarInsurance", function() {
     const product = new Product("foo", 10, 10);
     const productCloned = new Product("foo", 10, 10);
     const carInsurance = new CarInsurance([product]);
-    const products = carInsurance.updatePrice();
+    carInsurance.updatePrice();
     let price = PriceRule.getPrice(productCloned);
 
     expect(carInsurance.products[0].price).to.equal(price);
+  });
+
+    it("should decrement sellIn of products in one iteration", function(){
+    const product = new Product("foo", 10, 10);
+    const carInsurance = new CarInsurance([product]);
+    carInsurance.updatePrice();
+
+    expect(carInsurance.products[0].sellIn).to.equal(9);
+  });
+
+  it("should get a unchanged sellIn from of iteration, for Mega Coverage", function(){
+    const product = new Product("Mega Coverage", 10, 10);
+    const carInsurance = new CarInsurance([product]);
+    let price = PriceRule.getPrice(product);
+    carInsurance.updatePrice();
+
+    expect(carInsurance.products[0].sellIn).to.equal(10);
   });
 
 });

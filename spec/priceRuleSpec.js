@@ -7,7 +7,7 @@ const PriceRule = priceRuleModule.PriceRule;
 
 describe("PriceRule", function() {
 
-  it("should get a price update giving a product instance", function() {
+  it("should get a price change giving a product instance", function() {
     let pName = "foo",
         pSellIn = 1,
         pPrice = 1;
@@ -21,14 +21,14 @@ describe("PriceRule", function() {
     const product = new Product("foo", 10, 10);
     let price = PriceRule.getPrice(product);
 
-    expect(price).to.equal(9);
+    expect(price).to.equal(product.price - 1);
   });
 
   it("should decrement price in two units, for sellIn < 1 in normal products", function(){
     const product = new Product("foo", -1, 10);
     let price = PriceRule.getPrice(product);
 
-    expect(price).to.equal(8);
+    expect(price).to.equal(product.price - 2);
   });
 
 
@@ -53,7 +53,68 @@ describe("PriceRule", function() {
     expect(price).to.equal(50);
   });
 
+  it("should get a increaseing price, for Full Coverage", function(){
+    const product = new Product("Full Coverage", 10, 10);
+    let price = PriceRule.getPrice(product);
 
+    expect(price).to.equal(product.price + 1);
+  });
+
+  it("should get a unchanged price of 80, for Mega Coverage", function(){
+    const product = new Product("Mega Coverage", 10, 80);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(80);
+  });
+
+  it("should get a increaseing price of 3 unit, for sellIn in 1..5 in Special Full Coverage", function(){
+    const product = new Product("Special Full Coverage", 5, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price + 3);
+  });
+
+  it("should get a increaseing price of 2 unit, for sellIn in 6..10 in Special Full Coverage", function(){
+    const product = new Product("Special Full Coverage", 10, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price + 2);
+  });
+
+  it("should get a increaseing price of default unit, for sellIn in >10 in Special Full Coverage", function(){
+    const product = new Product("Special Full Coverage", 11, 15);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price + 1);
+  });
+
+  it("should get a price 0, for sellIn = in 0 Special Full Coverage", function(){
+    const product = new Product("Special Full Coverage", 0, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(0);
+  });
+
+  it("should get a price 0, for sellIn < 0 Special Full Coverage", function(){
+    const product = new Product("Special Full Coverage", -1, 0);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(0);
+  });
+
+  it("should decrement price in doble default units, for sellIn > 1 in Super Sale", function(){
+    const product = new Product("Super Sale", 10, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price - 2);
+  });
+
+  it("should decrement price in doble default units, for sellIn < 1 in Super Sale", function(){
+    const product = new Product("Super Sale", -1, 10);
+    let price = PriceRule.getPrice(product);
+
+    expect(price).to.equal(product.price - 4);
+  });
 
 
 });

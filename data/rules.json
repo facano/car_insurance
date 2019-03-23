@@ -58,6 +58,10 @@
         "from": 0,
         "to": 0,
         "value": "-price"
+      },
+      {
+        "from": 11,
+        "value": 1
       }
     ]
   }

@@ -1,7 +1,9 @@
 class PriceRule {
   static getPrice(product){
+    if (product.name == 'Mega Coverage')
+      return 80;
     let price = product.price + this.getDiff(product);
-    price = this.checkEdgeCase(price);
+      price = this.checkEdgeCase(price);
 
     return price;
   }
@@ -17,32 +19,35 @@ class PriceRule {
 
   static getDiff(product){
     let priceValue,
-        rulesProduct = this.rules.get(product.name) || this.rules.get("default");
+        rulesProduct = (this.rules.get(product.name) || []).concat(this.rules.get("default"));
 
-    rulesProduct.forEach( function(rule, index) {
+    for(let rule of rulesProduct) {
       if(rule.from != undefined && rule.to != undefined){
-        if (rule.from <= product.sellIn && rule.to >= product.sellIn)
+        if (rule.from <= product.sellIn && rule.to >= product.sellIn){
           priceValue = rule.value;
+          break;
+        }
       }
       else if(rule.from != undefined && rule.to == undefined){
-        if (rule.from <= product.sellIn)
+        if (rule.from <= product.sellIn){
           priceValue = rule.value;
+          break;
+        }
       }
       else if(rule.from == undefined && rule.to != undefined){
-        if (rule.to >= product.sellIn)
+        if (rule.to >= product.sellIn){
           priceValue = rule.value;
+          break;
+        }
       }
       else{
         priceValue = rule.value;
+        break;
       }
-    });
-
-    if (typeof priceValue == "string"){
-      if (priceValue == "-price")
-        return -product.price;
-      else if (priceValue == "price")
-        return product.price;
     }
+
+    if (typeof priceValue == "string" && priceValue == "-price")
+      return -product.price;
     else {
       return priceValue;
     }
@@ -55,8 +60,8 @@ class PriceRule {
   //    "rules": [
   //        "from": number (optional), describe a lower value (inclusive) for sellIn property
   //        "to": number (optional), describe a upper value (inclusive) for sellIn property
-  //        "value": value for increment or decrement price. Special values are "price" and "-price"
-  //                 for  increment or decrement the value of all price respectively
+  //        "value": value for increment or decrement price. Special values is"-price"
+  //                 for  decrement the value of all price
   //    ]
   // }
   static loadRules(){
